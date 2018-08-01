@@ -2,12 +2,15 @@ package com.epa.epa;
 
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 
+import com.epa.epa.authentication.AuthenticationService;
+import com.epa.epa.user.UserRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -24,6 +27,12 @@ public abstract class ComponentTest {
   private WebApplicationContext webApplicationContext;
 
   protected MockMvc mockMvc;
+
+  @MockBean
+  protected UserRepository userRepository;
+
+  @MockBean
+  protected AuthenticationService authenticationService;
 
   @Before
   public void createMockMvc() {

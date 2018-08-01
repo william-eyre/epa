@@ -19,19 +19,17 @@ public class AuthenticationController {
 
   private final AuthenticationService authenticationService;
 
-
   @PostMapping
-  @RequiresNoPermission
+  @RequiresPermission
   public ResponseEntity<Token> authenticateUser(
       @RequestBody User userCredentials) {
 
     ZonedDateTime now = ZonedDateTime.now(ZoneOffset.UTC);
 
-    Token jwt = authenticationService.constructJWT(now, userCredentials);
-
     return authenticationService.isValidLogin(userCredentials) ?
-        ResponseEntity.ok(new Token(jwt.getEmployeeId(), jwt.getToken(), jwt.getExpiryDate())) :
+        ResponseEntity.ok(new Token(authenticationService.constructJWT(now, userCredentials))) :
         ResponseEntity.badRequest().build();
+
   }
 }
 

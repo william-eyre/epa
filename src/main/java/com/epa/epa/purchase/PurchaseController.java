@@ -16,10 +16,11 @@ public class PurchaseController {
 
   PurchaseService purchaseService;
 
-  @PatchMapping("{employeeId}")
+  @PatchMapping(path = "{employeeId}")
   @RequiresPermission
   public @ResponseBody
   void purchaseItem(@RequestBody PurchaseTotal purchaseTotal, @PathVariable String employeeId) {
-    purchaseService.purchaseItem(purchaseTotal, employeeId);
+    purchaseService.purchaseItem(employeeId, purchaseTotal);
   }
 }
+

@@ -19,7 +19,6 @@ public class AuthenticationService {
 
   private final UserRepository userRepository;
   private final PasswordEncryption passwordEncryption;
-  private final TokenRepository tokenRepository;
 
 
   public boolean isValidLogin(@RequestBody User userCredentials) {
@@ -29,26 +28,16 @@ public class AuthenticationService {
         passwordEncryption.verifyPassword(userCredentials.getPin(), user.getPin());
   }
 
-  public Token constructJWT(ZonedDateTime now, User userCredentials) {
+  public String constructJWT(ZonedDateTime now, User userCredentials) {
     User user = userRepository.findByEmployeeId(userCredentials.getEmployeeId());
 
-    Date expiration = Date.from(now.plusHours(1).toInstant());
-
-    Token token = Token.builder()
-        .employeeId(user.getEmployeeId())
-        .token(Jwts.builder()
-            .setClaims(Jwts.claims()
-                .setIssuedAt(Date.from(now.toInstant()))
-                .setExpiration(expiration))
-            .claim("identity", user.getEmployeeId())
-            .claim("name", user.getName())
-            .signWith(SignatureAlgorithm.HS512, KEY)
-            .compact())
-        .expiryDate(expiration)
-        .build();
-
-    tokenRepository.save(token);
-
-    return token;
+    return Jwts.builder()
+        .setClaims(Jwts.claims()
+            .setIssuedAt(Date.from(now.toInstant()))
+            .setExpiration(Date.from(now.plusHours(1).toInstant())))
+        .claim("identity", user.getEmployeeId())
+        .claim("name", user.getName())
+        .signWith(SignatureAlgorithm.HS512, KEY)
+        .compact();
   }
 }

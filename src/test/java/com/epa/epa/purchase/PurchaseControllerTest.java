@@ -1,4 +1,4 @@
-package com.epa.epa.topup;
+package com.epa.epa.purchase;
 
 import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
@@ -10,29 +10,29 @@ import org.junit.Test;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 
-
-public class TopUpControllerTest extends ComponentTest {
+public class PurchaseControllerTest extends ComponentTest {
 
   @MockBean
-  private TopUpService topUpService;
+  private PurchaseService purchaseService;
 
   @Test
-  public void shouldTopUpUsersBalance() throws Exception {
+  public void shouldDeductMoneyFromUser() throws Exception {
 
-    TopUpAmount topUpAmount = TopUpAmount.builder()
-        .topUpAmount(100)
+    PurchaseTotal purchaseTotal = PurchaseTotal.builder()
+        .purchaseTotal(100)
         .build();
 
     String token = "eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE1MzMxMzIyMjQsImV4cCI6MTUzMzEzNTgyNCwiaWRlbnRpdHkiOiIxMjM0NTYiLCJuYW1lIjoiV2lsbCBFeXJlIn0.0A3M79Q3o6zLrPGuWlhhWisUAtuobd8QQ2GldZm0j8hULHMLRcmsgVFxFKfwDBqXr-TeNAQyCUXH36wz8wRAxg";
 
-    mockMvc.perform(patch("/topup/12345678")
+    mockMvc.perform(patch("/purchase/12345678")
         .header("X-AUTHORIZATION", token)
         .contentType(MediaType.APPLICATION_JSON)
-        .content(json(topUpAmount)))
+        .content(json(purchaseTotal)))
         .andDo(print())
         .andExpect(status().isOk());
 
-    verify(topUpService).topUpUser("12345678", topUpAmount);
+    verify(purchaseService).purchaseItem("12345678", purchaseTotal);
 
   }
+
 }

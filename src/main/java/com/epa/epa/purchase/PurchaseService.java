@@ -11,7 +11,7 @@ public class PurchaseService {
 
   private final UserRepository userRepository;
 
-  public void purchaseItem(PurchaseTotal purchaseTotal, String employeeId)  {
+  public void purchaseItem(String employeeId, PurchaseTotal purchaseTotal)  {
 
     User user = userRepository.findByEmployeeId(employeeId);
 
