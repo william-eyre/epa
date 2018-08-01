@@ -6,4 +6,5 @@ public interface AuthenticationConstants {
       .getBytes();
 
   String IDENTITY_KEY = "epaIdentity";
+
 }
