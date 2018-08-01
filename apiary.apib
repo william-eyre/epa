@@ -1,0 +1,95 @@
+FORMAT: 1A
+HOST: http://polls.apiblueprint.org/
+
+# First Catering Ltd blueprint
+
+Allows employees of Bows Formula One to use their existing employee cards in a kiosk to register and top up with money.
+
+## Register user [/user]
+
+### Register a user [POST]
+
++ Request (application/json)
+
+        {
+            "employeeId"   : "6hdy74jfi819f6d3",
+            "name"         : "William Eyre",
+            "email"        : "william@email.com",
+            "mobileNumber" : 12345678901,
+            "pin"          : 1234
+        }
+
++ Response 200 (application/json)
+
+## Authentication [/authenticate]
+
+### Authenticate User [POST]
+
++ Request (application/json)
+
+        {
+           "employeeId" : "6hdy74jfi819f6d3"
+           "pin" : 1234
+        }
+
++ Response 200 (application/json)
+    
+
+    + Body
+
+            {
+                "token" : "eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE1MzMxMzIyMjQsImV4cCI6MTUzMzEzNTgyNCwiaWRlbnRpdHkiOiIxMjM0NTYiLCJuYW1lIjoiV2lsbCBFeXJlIn0.0A3M79Q3o6zLrPGuWlhhWisUAtuobd8QQ2GldZm0j8hULHMLRcmsgVFxFKfwDBqXr-TeNAQyCUXH36wz8wRAxg"
+            }
+                
+        
++ Response 404 
+
+
+## Purchase item [/purchase/{employeeId}]
+
+### Purchase item [PATCH]
+
+balance will be in pennies to make currency hanlding easier.
+
++ Request (application/json) 
+
+
+        {
+            "pruchaseTotal" : -200
+        }
+        
+        
++ Response 200 (application/json) 
+
+
+    + Body
+
+            {
+                "balance" : 1000
+            }
+        
+
+## Top up card [/topup/{employeeId}]
+
+### Top up card [PATCH]
+
+    
++ Request (application/json) 
+
+
+    + Body
+
+            {
+                "debitAmount" : 200
+            }
+            
+            
+
++ Response 200 (application/json)
+    
+
+    + Body
+
+            {
+                "balance" : 1000
+            }
