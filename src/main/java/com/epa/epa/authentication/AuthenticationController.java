@@ -20,7 +20,7 @@ public class AuthenticationController {
   private final AuthenticationService authenticationService;
 
   @PostMapping
-  @RequiresPermission
+  @RequiresNoPermission
   public ResponseEntity<Token> authenticateUser(
       @RequestBody User userCredentials) {
 

@@ -34,9 +34,10 @@ public class AuthenticationService {
     return Jwts.builder()
         .setClaims(Jwts.claims()
             .setIssuedAt(Date.from(now.toInstant()))
-            .setExpiration(Date.from(now.plusHours(1).toInstant())))
+            .setExpiration(Date.from(now.plusMinutes(5).toInstant())))
         .claim("identity", user.getEmployeeId())
         .claim("name", user.getName())
+        .claim("balance", user.getBalance())
         .signWith(SignatureAlgorithm.HS512, KEY)
         .compact();
   }
