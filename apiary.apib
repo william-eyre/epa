@@ -5,7 +5,23 @@ HOST: http://polls.apiblueprint.org/
 
 Allows employees of Bows Formula One to use their existing employee cards in a kiosk to register and top up with money.
 
+## Verify user [/user/{employeeId}]
+
+Allows for verification of a user.
+
+### Verify User exists [GET]
+
++ Response 200 (application/json)
+
+        User found 
+        
++ Response 404 (application/json)
+    
+        User not found
+
 ## Register user [/user]
+
+Register a user by sending all the following information.
 
 ### Register a user [POST]
 
@@ -23,7 +39,11 @@ Allows employees of Bows Formula One to use their existing employee cards in a k
 
 ## Authentication [/authenticate]
 
+
 ### Authenticate User [POST]
+
+Returns a JWT to the front end that is then put into the header of all subsequent request to authenticate the user.
+The JWT will have a expiry time of five minutes. 
 
 + Request (application/json)
 
@@ -40,24 +60,35 @@ Allows employees of Bows Formula One to use their existing employee cards in a k
             {
                 "token" : "eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE1MzMxMzIyMjQsImV4cCI6MTUzMzEzNTgyNCwiaWRlbnRpdHkiOiIxMjM0NTYiLCJuYW1lIjoiV2lsbCBFeXJlIn0.0A3M79Q3o6zLrPGuWlhhWisUAtuobd8QQ2GldZm0j8hULHMLRcmsgVFxFKfwDBqXr-TeNAQyCUXH36wz8wRAxg"
             }
-                
-        
-+ Response 404 
+               
+               
+               
 
 
 ## Purchase item [/purchase/{employeeId}]
 
+Balance will be in pennies to make currency hanlding easier.
+
 ### Purchase item [PATCH]
 
-balance will be in pennies to make currency hanlding easier.
 
+  
 + Request (application/json) 
 
 
-        {
-            "pruchaseTotal" : -200
-        }
-        
+    + Headers
+
+
+                X-AUTHORZATION : eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE1MzMxMzIyMjQsImV4cCI6MTUzMzEzNTgyNCwiaWRlbnRpdHkiOiIxMjM0NTYiLCJuYW1lIjoiV2lsbCBFeXJlIn0.0A3M79Q3o6zLrPGuWlhhWisUAtuobd8QQ2GldZm0j8hULHMLRcmsgVFxFKfwDBqXr-TeNAQyCUXH36wz8wRAxg
+
+
+
+   + Body
+
+            {
+                "purchaseTotal" : 200
+            }
+            
         
 + Response 200 (application/json) 
 
@@ -69,13 +100,24 @@ balance will be in pennies to make currency hanlding easier.
             }
         
 
+
+
 ## Top up card [/topup/{employeeId}]
 
+Balance will be in pennies to make currency hanlding easier.
+
 ### Top up card [PATCH]
+
 
     
 + Request (application/json) 
 
+
+     + Headers
+
+
+            X-AUTHORZATION : eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE1MzMxMzIyMjQsImV4cCI6MTUzMzEzNTgyNCwiaWRlbnRpdHkiOiIxMjM0NTYiLCJuYW1lIjoiV2lsbCBFeXJlIn0.0A3M79Q3o6zLrPGuWlhhWisUAtuobd8QQ2GldZm0j8hULHMLRcmsgVFxFKfwDBqXr-TeNAQyCUXH36wz8wRAxg
+        
 
     + Body
 
