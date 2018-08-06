@@ -11,15 +11,16 @@ public class PurchaseService {
 
   private final UserRepository userRepository;
 
-  public boolean purchaseItem(String employeeId, PurchaseTotal purchaseTotal)  {
+  public boolean purchaseItem(String employeeId, PurchaseTotal purchaseTotal) {
 
     User user = userRepository.findByEmployeeId(employeeId);
 
     int newBalance = user.getBalance() - purchaseTotal.getPurchaseTotal();
 
-    if (newBalance < 0) {
+    if (newBalance < 0 || purchaseTotal.getPurchaseTotal() <= 0) {
       return false;
-    } else {
+    }
+    else {
       User employee = User.builder()
           .employeeId(employeeId)
           .firstName(user.getFirstName())
