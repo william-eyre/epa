@@ -21,7 +21,7 @@ There are a few steps that need to be done before this API can be used.
 
    Employees of Bows Formula one will be able to registers their existing employee card once they have given the following information.
 
-   * Employee ID
+   * Employee ID (8 character alphaNumeric value)
    * Name
    * Email
    * Mobile Number
