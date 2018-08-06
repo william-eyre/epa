@@ -2,12 +2,10 @@ package com.epa.epa.user;
 
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.CREATED;
-import static org.springframework.http.HttpStatus.NOT_FOUND;
-import static org.springframework.http.HttpStatus.OK;
 
 import com.epa.epa.authentication.RequiresNoPermission;
+import com.epa.epa.authentication.RequiresPermission;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,11 +32,9 @@ public class UserController {
   }
 
   @GetMapping(path = "/{employeeId}")
-  @RequiresNoPermission
+  @RequiresPermission
   public @ResponseBody
-  ResponseEntity<HttpStatus> verifyUserExists(@PathVariable String employeeId) {
-    return userService.verifyUser(employeeId)
-        ? new ResponseEntity<>(OK)
-        : new ResponseEntity<>(NOT_FOUND);
+  User verifyUserExists(@PathVariable String employeeId) {
+    return userService.getUserInfo(employeeId);
   }
 }

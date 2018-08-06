@@ -3,7 +3,6 @@ package com.epa.epa.user;
 import com.epa.epa.encryption.PasswordEncryption;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @Service
 @AllArgsConstructor
@@ -13,7 +12,7 @@ public class UserService {
 
   private final PasswordEncryption passwordEncryption;
 
-  boolean createUser(User user) {
+  public boolean createUser(User user) {
     String encryptedPin = passwordEncryption.generatePassword(user.getPin());
 
     if (verifyUser(user.getEmployeeId())) {
@@ -33,7 +32,19 @@ public class UserService {
     return true;
   }
 
-  boolean verifyUser(@RequestBody String employeeId) {
+  public User getUserInfo(String employeeId) {
+    User user = userRepository.findByEmployeeId(employeeId);
+
+    return User.builder()
+        .firstName(user.getFirstName())
+        .lastName(user.getLastName())
+        .employeeId(user.getEmployeeId())
+        .email(user.getEmail())
+        .mobileNumber(user.getMobileNumber())
+        .build();
+  }
+
+  boolean verifyUser(String employeeId) {
     User user = userRepository.findByEmployeeId(employeeId);
     return user != null;
   }

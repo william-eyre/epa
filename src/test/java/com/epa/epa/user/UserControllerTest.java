@@ -1,11 +1,13 @@
 package com.epa.epa.user;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.epa.epa.ComponentTest;
@@ -47,6 +49,30 @@ public class UserControllerTest extends ComponentTest {
 
     verify(userService).createUser(user);
 
+  }
+
+  @Test
+  public void shouldReturnUserInfo() throws Exception {
+    User user = User.builder()
+        .employeeId("213123123")
+        .firstName("Wally")
+        .lastName("West")
+        .email("Flash@Speed.com")
+        .mobileNumber("12345678901")
+        .bankDetails("1234567890123456")
+        .pin("1234")
+        .build();
+
+    when(userService.getUserInfo(user.getEmployeeId())).thenReturn(user);
+
+    mockMvc.perform(get("/user/213123123").contentType(APPLICATION_JSON).header("X-AUTHORIZATION", jwt))
+        .andDo(print())
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("firstName", is("Wally")))
+        .andExpect(jsonPath("lastName", is("West")))
+        .andExpect(jsonPath("employeeId", is("213123123")))
+        .andExpect(jsonPath("email", is("Flash@Speed.com")))
+        .andExpect(jsonPath("mobileNumber", is("12345678901")));
   }
 
   @Test

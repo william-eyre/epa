@@ -1,11 +1,16 @@
 package com.epa.epa;
 
+import static com.epa.epa.authentication.AuthenticationConstants.KEY;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 
 import com.epa.epa.authentication.AuthenticationService;
 import com.epa.epa.user.UserRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import java.time.ZonedDateTime;
+import java.util.Date;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +38,19 @@ public abstract class ComponentTest {
 
   @MockBean
   protected AuthenticationService authenticationService;
+
+
+  private ZonedDateTime now = ZonedDateTime.now();
+
+  protected String jwt = Jwts.builder()
+      .setClaims(Jwts.claims()
+          .setIssuedAt(Date.from(now.toInstant()))
+          .setExpiration(Date.from(now.plusMinutes(5).toInstant())))
+      .claim("identity", "123435678")
+      .claim("firstName", "Bruce")
+      .claim("balance", "1000")
+      .signWith(SignatureAlgorithm.HS512, KEY)
+      .compact();
 
   @Before
   public void createMockMvc() {
