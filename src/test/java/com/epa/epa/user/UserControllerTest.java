@@ -74,23 +74,4 @@ public class UserControllerTest extends ComponentTest {
         .andExpect(jsonPath("email", is("Flash@Speed.com")))
         .andExpect(jsonPath("mobileNumber", is("12345678901")));
   }
-
-  @Test
-  public void shouldVerifyUserExists_andReturn200() throws Exception {
-    mockMvc.perform(get("/user/12345kjenr4324"))
-        .andDo(print())
-        .andExpect(status().isOk());
-
-    verify(userService).verifyUser("12345kjenr4324");
-  }
-
-
-  @Test
-  public void shouldVerifyUserDoesNotExist_andReturn404() throws Exception {
-    mockMvc.perform(get("/user/2131231dfd"))
-        .andDo(print())
-        .andExpect(status().isNotFound());
-
-    verify(userService).verifyUser("2131231dfd");
-  }
 }
