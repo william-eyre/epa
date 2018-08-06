@@ -31,12 +31,14 @@ public class AuthenticationService {
   public String constructJWT(ZonedDateTime now, User userCredentials) {
     User user = userRepository.findByEmployeeId(userCredentials.getEmployeeId());
 
+    String name = String.format("%s %s", user.getFirstName(), user.getLastName());
+
     return Jwts.builder()
         .setClaims(Jwts.claims()
             .setIssuedAt(Date.from(now.toInstant()))
             .setExpiration(Date.from(now.plusMinutes(5).toInstant())))
         .claim("identity", user.getEmployeeId())
-        .claim("name", user.getName())
+        .claim("firstName", user.getFirstName())
         .claim("balance", user.getBalance())
         .signWith(SignatureAlgorithm.HS512, KEY)
         .compact();

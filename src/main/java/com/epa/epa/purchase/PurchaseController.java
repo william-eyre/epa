@@ -2,6 +2,8 @@ package com.epa.epa.purchase;
 
 import com.epa.epa.authentication.RequiresPermission;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,8 +21,10 @@ public class PurchaseController {
   @PatchMapping(path = "{employeeId}")
   @RequiresPermission
   public @ResponseBody
-  void purchaseItem(@RequestBody PurchaseTotal purchaseTotal, @PathVariable String employeeId) {
-    purchaseService.purchaseItem(employeeId, purchaseTotal);
+  ResponseEntity<HttpStatus> purchaseItem(@RequestBody PurchaseTotal purchaseTotal, @PathVariable String employeeId) {
+    return purchaseService.purchaseItem(employeeId, purchaseTotal)
+        ? new ResponseEntity<>(HttpStatus.OK)
+        : new ResponseEntity<>(HttpStatus.BAD_REQUEST);
   }
 }
 

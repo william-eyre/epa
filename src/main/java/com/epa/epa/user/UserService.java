@@ -13,15 +13,16 @@ public class UserService {
 
   private final PasswordEncryption passwordEncryption;
 
-  String createUser(User user) {
+  boolean createUser(User user) {
     String encryptedPin = passwordEncryption.generatePassword(user.getPin());
 
-    if (userRepository.findByEmployeeId(user.getEmployeeId()) != null) {
-      return "User already exists";
+    if (verifyUser(user.getEmployeeId())) {
+      return false;
     } else {
       userRepository.save(User.builder()
           .employeeId(user.getEmployeeId())
-          .name(user.getName())
+          .firstName(user.getFirstName())
+          .lastName(user.getLastName())
           .email(user.getEmail())
           .mobileNumber(user.getMobileNumber())
           .bankDetails(user.getBankDetails())
@@ -29,8 +30,7 @@ public class UserService {
           .balance(0)
           .build());
     }
-
-    return "User Created";
+    return true;
   }
 
   boolean verifyUser(@RequestBody String employeeId) {

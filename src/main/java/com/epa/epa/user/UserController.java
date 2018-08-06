@@ -1,10 +1,13 @@
 package com.epa.epa.user;
 
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
+import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 import static org.springframework.http.HttpStatus.OK;
 
 import com.epa.epa.authentication.RequiresNoPermission;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,18 +27,18 @@ public class UserController {
   @PostMapping
   @RequiresNoPermission
   public @ResponseBody
-  String createNewUser(@RequestBody User userDetails) {
-   return userService.createUser(userDetails);
+  ResponseEntity<Object> createNewUser(@RequestBody User userDetails) {
+   return userService.createUser(userDetails)
+       ? new ResponseEntity<>(CREATED)
+       : new ResponseEntity<>(BAD_REQUEST);
   }
 
-  @GetMapping(path = "{employeeId}")
+  @GetMapping(path = "/{employeeId}")
   @RequiresNoPermission
   public @ResponseBody
-  ResponseEntity<Object> verifyUserExists(@PathVariable String employeeId) {
-
-    return userService.verifyUser(employeeId) ?
-        new ResponseEntity<>(OK) :
-        new ResponseEntity<>(NOT_FOUND);
+  ResponseEntity<HttpStatus> verifyUserExists(@PathVariable String employeeId) {
+    return userService.verifyUser(employeeId)
+        ? new ResponseEntity<>(OK)
+        : new ResponseEntity<>(NOT_FOUND);
   }
-
 }

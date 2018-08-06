@@ -22,7 +22,7 @@ public class PurchaseControllerTest extends ComponentTest {
         .purchaseTotal(100)
         .build();
 
-    String token = "eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE1MzMxMzIyMjQsImV4cCI6MTUzMzEzNTgyNCwiaWRlbnRpdHkiOiIxMjM0NTYiLCJuYW1lIjoiV2lsbCBFeXJlIn0.0A3M79Q3o6zLrPGuWlhhWisUAtuobd8QQ2GldZm0j8hULHMLRcmsgVFxFKfwDBqXr-TeNAQyCUXH36wz8wRAxg";
+    String token = "eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE1MzM1NDM4MzMsImV4cCI6MTUzMzU0NDEzMywiaWRlbnRpdHkiOiIxMjM0NTY3OSIsImZpcnN0TmFtZSI6IldpbGwiLCJiYWxhbmNlIjowfQ.w9hDoJS7zJ2YCc3IFJ0ZoXp0rMFxQiI7nWF_MZUE8ObJhNwVANVd-uu4WFjqMH9I0v0ZB0YuIaUOImUwDUiX1w";
 
     mockMvc.perform(patch("/purchase/12345678")
         .header("X-AUTHORIZATION", token)

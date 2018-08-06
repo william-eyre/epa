@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Length;
 
 @Data
 @Entity
@@ -18,14 +19,19 @@ import lombok.NoArgsConstructor;
 public class User {
 
   @Id
+  @Length(min = 8, max = 8)
   private String employeeId;
   @NotBlank
-  private String name;
+  private String firstName;
+  @NotBlank
+  private String lastName;
   @NotBlank
   private String email;
   @NotBlank
+  @Length(min = 11, max = 11)
   private String mobileNumber;
   @NotBlank
+  @Length(min = 16, max = 16)
   private String bankDetails;
   @NotBlank
   private String pin;

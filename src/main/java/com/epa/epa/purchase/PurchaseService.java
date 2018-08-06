@@ -11,25 +11,29 @@ public class PurchaseService {
 
   private final UserRepository userRepository;
 
-  public void purchaseItem(String employeeId, PurchaseTotal purchaseTotal)  {
+  public boolean purchaseItem(String employeeId, PurchaseTotal purchaseTotal)  {
 
     User user = userRepository.findByEmployeeId(employeeId);
 
-    int initialAmount = user.getBalance();
-    int deduction = purchaseTotal.getPurchaseTotal();
+    int newBalance = user.getBalance() - purchaseTotal.getPurchaseTotal();
 
+    if (newBalance < 0) {
+      return false;
+    } else {
+      User employee = User.builder()
+          .employeeId(employeeId)
+          .firstName(user.getFirstName())
+          .lastName(user.getLastName())
+          .email(user.getEmail())
+          .mobileNumber(user.getMobileNumber())
+          .bankDetails(user.getBankDetails())
+          .balance(newBalance)
+          .pin(user.getPin())
+          .build();
 
-    User employee = User.builder()
-        .employeeId(employeeId)
-        .name(user.getName())
-        .email(user.getEmail())
-        .mobileNumber(user.getMobileNumber())
-        .bankDetails(user.getBankDetails())
-        .balance(initialAmount - deduction)
-        .pin(user.getPin())
-        .build();
-
-    userRepository.save(employee);
+      userRepository.save(employee);
+      return true;
+    }
   }
 
 

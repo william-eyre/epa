@@ -27,7 +27,8 @@ public class TopUpServiceTest {
   public void shouldTopUpUserBalance_givenEmployeeId() {
     User user = User.builder()
         .employeeId("12345kjenr4324")
-        .name("Bruce Wayne")
+        .firstName("Bruce")
+        .lastName("Wayne")
         .email("bat@man.com")
         .mobileNumber("77384756473")
         .bankDetails("1234561234561234")
