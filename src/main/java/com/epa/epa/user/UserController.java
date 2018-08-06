@@ -34,7 +34,7 @@ public class UserController {
   @GetMapping(path = "/{employeeId}")
   @RequiresPermission
   public @ResponseBody
-  User verifyUserExists(@PathVariable String employeeId) {
+  User getUserInformation(@PathVariable String employeeId) {
     return userService.getUserInfo(employeeId);
   }
 }
