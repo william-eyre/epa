@@ -65,7 +65,7 @@ public class UserControllerTest extends ComponentTest {
 
     when(userService.getUserInfo(user.getEmployeeId())).thenReturn(user);
 
-    mockMvc.perform(get("/user/213123123").contentType(APPLICATION_JSON).header("X-AUTHORIZATION", jwt))
+    mockMvc.perform(get("/user/213123123").contentType(APPLICATION_JSON))
         .andDo(print())
         .andExpect(status().isOk())
         .andExpect(jsonPath("firstName", is("Wally")))

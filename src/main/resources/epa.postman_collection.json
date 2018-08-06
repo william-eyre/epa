@@ -1,0 +1,147 @@
+{
+	"id": "8fecbf78-4734-4933-af0d-4310580d2ec9",
+	"name": "epa",
+	"description": "",
+	"auth": null,
+	"events": null,
+	"variables": [],
+	"order": [
+		"f7da5d90-b712-462d-81fc-408ce9a8b712",
+		"f9952c64-e065-47c4-826d-8cfe02c93f49",
+		"6bd9f34c-560a-4482-8786-8b273039eca8",
+		"7f3ba395-6660-4bcc-9cf2-543d42164a42",
+		"0f513f49-78f2-42ac-bf8f-60328e740f95"
+	],
+	"folders_order": [],
+	"folders": [],
+	"requests": [
+		{
+			"id": "0f513f49-78f2-42ac-bf8f-60328e740f95",
+			"name": "verify user",
+			"url": "http://localhost:8888/user/12345678",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [
+				{
+					"key": "X-AUTHERIZATION",
+					"value": "eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE1MzM1NTY3NzYsImV4cCI6MTUzMzU1NzA3NiwiaWRlbnRpdHkiOiIxMjM0NTY3OCIsImZpcnN0TmFtZSI6IldpbGwgRXlyZSIsImJhbGFuY2UiOjB9.eFtuzqQj3zxnqqHBTo8QBA0s0Yj4lLKROVAZ1RaYVvznnjPzuR_oveWxf19ZcdPy1rsEBIKwcmFr6f-3rKxKCA",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": null,
+			"headers": "X-AUTHERIZATION: eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE1MzM1NTY3NzYsImV4cCI6MTUzMzU1NzA3NiwiaWRlbnRpdHkiOiIxMjM0NTY3OCIsImZpcnN0TmFtZSI6IldpbGwgRXlyZSIsImJhbGFuY2UiOjB9.eFtuzqQj3zxnqqHBTo8QBA0s0Yj4lLKROVAZ1RaYVvznnjPzuR_oveWxf19ZcdPy1rsEBIKwcmFr6f-3rKxKCA\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "6bd9f34c-560a-4482-8786-8b273039eca8",
+			"name": "authenticate user",
+			"url": "http://localhost:8888/authentication",
+			"description": "",
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": null,
+			"rawModeData": "{\n\t\"employeeId\" : \"12345678\",\n\t\"pin\" : \"1234\"\n}",
+			"headers": "Content-Type: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "7f3ba395-6660-4bcc-9cf2-543d42164a42",
+			"name": "purchase item",
+			"url": "http://localhost:8888/purchase/123456",
+			"description": "",
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"key": "X-AUTHORIZATION",
+					"value": "eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE1MzMxMzIyMjQsImV4cCI6MTUzMzEzNTgyNCwiaWRlbnRpdHkiOiIxMjM0NTYiLCJuYW1lIjoiV2lsbCBFeXJlIn0.0A3M79Q3o6zLrPGuWlhhWisUAtuobd8QQ2GldZm0j8hULHMLRcmsgVFxFKfwDBqXr-TeNAQyCUXH36wz8wRAxg",
+					"description": "",
+					"enabled": false
+				}
+			],
+			"method": "PATCH",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": null,
+			"rawModeData": "{\n\t\"purchaseTotal\" : 100\n}",
+			"headers": "Content-Type: application/json\n//X-AUTHORIZATION: eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE1MzMxMzIyMjQsImV4cCI6MTUzMzEzNTgyNCwiaWRlbnRpdHkiOiIxMjM0NTYiLCJuYW1lIjoiV2lsbCBFeXJlIn0.0A3M79Q3o6zLrPGuWlhhWisUAtuobd8QQ2GldZm0j8hULHMLRcmsgVFxFKfwDBqXr-TeNAQyCUXH36wz8wRAxg\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "f7da5d90-b712-462d-81fc-408ce9a8b712",
+			"name": "create user",
+			"url": "http://localhost:8888/user",
+			"description": "",
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": null,
+			"rawModeData": "{\n\t\"employeeId\" : \"12345679\",\n\t\"firstName\" : \"Will\",\n\t\"lastName\" : \"Eyre\",\n\t\"email\" : \"Will@email.com\",\n\t\"mobileNumber\" : \"11111111111\",\n\t\"bankDetails\" : \"1234567890123456\",\n\t\"pin\" : \"1234\"\n}",
+			"headers": "Content-Type: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "f9952c64-e065-47c4-826d-8cfe02c93f49",
+			"name": "top up user",
+			"url": "http://localhost:8888/topup/123456",
+			"description": null,
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"key": "X-AUTHORIZATION",
+					"value": "eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE1MzMyMjM0NjYsImV4cCI6MTUzMzIyMzc2NiwiaWRlbnRpdHkiOiIxMjM0NTYiLCJuYW1lIjoiV2lsbCBFeXJlIiwiYmFsYW5jZSI6MH0.HNFQJqOG_RsxPj7FF5nQjqRYox517fTMKkeLjQbE2JwmT8RuCrASmda3rBrWSxsGzAPpU3X-lyF9nGP35PjdmA",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "PATCH",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": null,
+			"rawModeData": "{\n\t\"topUpAmount\" : 1\n}",
+			"headers": "Content-Type: application/json\nX-AUTHORIZATION: eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE1MzMyMjM0NjYsImV4cCI6MTUzMzIyMzc2NiwiaWRlbnRpdHkiOiIxMjM0NTYiLCJuYW1lIjoiV2lsbCBFeXJlIiwiYmFsYW5jZSI6MH0.HNFQJqOG_RsxPj7FF5nQjqRYox517fTMKkeLjQbE2JwmT8RuCrASmda3rBrWSxsGzAPpU3X-lyF9nGP35PjdmA\n",
+			"pathVariables": {}
+		}
+	]
+}

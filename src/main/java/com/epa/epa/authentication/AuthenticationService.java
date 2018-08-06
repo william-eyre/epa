@@ -38,7 +38,7 @@ public class AuthenticationService {
             .setIssuedAt(Date.from(now.toInstant()))
             .setExpiration(Date.from(now.plusMinutes(5).toInstant())))
         .claim("identity", user.getEmployeeId())
-        .claim("firstName", name)
+        .claim("name", name)
         .claim("balance", user.getBalance())
         .signWith(SignatureAlgorithm.HS512, KEY)
         .compact();

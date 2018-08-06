@@ -4,7 +4,6 @@ import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.CREATED;
 
 import com.epa.epa.authentication.RequiresNoPermission;
-import com.epa.epa.authentication.RequiresPermission;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -32,7 +31,7 @@ public class UserController {
   }
 
   @GetMapping(path = "/{employeeId}")
-  @RequiresPermission
+  @RequiresNoPermission
   public @ResponseBody
   User getUserInformation(@PathVariable String employeeId) {
     return userService.getUserInfo(employeeId);
