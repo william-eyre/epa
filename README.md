@@ -3,7 +3,7 @@
 This API can be used by employees of Bows Formula One to register their existing employee cards, top them up with credit and then spend that credit in their office.
 
 Bows Formula One will be supplying touch screen PC's that will act as the front end for this system.
-From those PC's a use will be able to register their employee cards, top up and see their transaction history.
+From those PC's a user will be able to register their employee cards, top up the cards and see their transaction history.
 Bows will also have scanners at each till so that customers can scan their cards to make purchases at the tills.
 
 # Setup 
@@ -42,8 +42,6 @@ Once the API is up and running it is a good idea to test out a few request and m
 Using postman you can hit all the URI's you need to.
 
 ![screen shot 2018-08-06 at 15 07 02](https://user-images.githubusercontent.com/22473649/43721507-e2f9ee76-998a-11e8-83d7-61423558ed1d.png)
-
-
 
 
 **Improvements**
