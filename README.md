@@ -29,10 +29,10 @@ There are a few steps that need to be done before this API can be used.
    * Pin number
 
 
-    Once a user has registered themselves, they will be able to log in with their employee id and pin number,
-    this request will be sent to ``` http://localhost:8888/authentication ``` with the request body holding their employee id and pin.
-    When the user has been authenticated against the database a JWT will be constructed for that user.
-    The JWT should be put into the header 'X-AUTHORIZATION', this header should then be sent with all subsequent requests.
+  Once a user has registered themselves, they will be able to log in with their employee id and pin number,
+  this request will be sent to ``` http://localhost:8888/authentication ``` with the request body holding their employee id       and pin.
+  When the user has been authenticated against the database a JWT will be constructed for that user.
+  The JWT should be put into the header 'X-AUTHORIZATION', this header should then be sent with all subsequent requests.
 
 
 
@@ -40,6 +40,9 @@ There are a few steps that need to be done before this API can be used.
 
 Once the API is up and running it is a good idea to test out a few request and make sure you are familiar with the different requests.
 Using postman you can hit all the URI's you need to.
+
+![screen shot 2018-08-06 at 15 07 02](https://user-images.githubusercontent.com/22473649/43721507-e2f9ee76-998a-11e8-83d7-61423558ed1d.png)
+
 
 
 
