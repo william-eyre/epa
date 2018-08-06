@@ -11,6 +11,7 @@ Bows will also have scanners at each till so that customers can scan their cards
 There are a few steps that need to be done before this API can be used.
   1. Clone this repository
   2. Make sure MySQL is set up on your machine.
+  3. Look in the application.properties file and you will find the credentials for the MySQL user, you can either create your        own or use the details that are in there. You just need to make sure you have a database set up.
   3. Open the project and let Gradle download all the dependencies.
   4. Run the application using either your IDE or from the command line.
   5. When the application is running requests to the API can be made to ``` http://localhost:8888/ ```
