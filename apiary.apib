@@ -5,19 +5,23 @@ HOST: http://polls.apiblueprint.org/
 
 Allows employees of Bows Formula One to use their existing employee cards in a kiosk to register and top up with money.
 
-## Verify user [/user/{employeeId}]
+## Get user information [/user/{employeeId}]
 
-Allows for verification of a user.
+Allows for collection of customer information, pin number and bank details will not be returned by this request
 
-### Verify User exists [GET]
+### Get user informaiton [GET]
+
+    + Headers
+    
+    
+            X-AUTHORIZATION : eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE1MzMxMzIyMjQsImV4cCI6MTUzMzEzNTgyNCwiaWRlbnRpdHkiOiIxMjM0NTYiLCJuYW1lIjoiV2lsbCBFeXJlIn0.0A3M79Q3o6zLrPGuWlhhWisUAtuobd8QQ2GldZm0j8hULHMLRcmsgVFxFKfwDBqXr-TeNAQyCUXH36wz8wRAxg
+                
+                
 
 + Response 200 (application/json)
 
         User found 
         
-+ Response 404 (application/json)
-    
-        User not found
 
 ## Register user [/user]
 
@@ -36,6 +40,9 @@ Register a user by sending all the following information.
         }
 
 + Response 201 (application/json)
+
+
++ Response 400 (application/json)
 
 ## Authentication [/authenticate]
 
