@@ -51,7 +51,7 @@ Using postman you can hit all the URI's you need to, there is a file in the reso
 Ideally in the future the authentication section of this project will be moved out into another micro-service that the touch screen PC can hit,
 the reason for this is to separate out the business logic from the security side to keep the code base simpler.
 
-Being able to freeze a customers card if they loose it would be a useful feature,
+Being able to freeze a customer's card if they lose it would be a useful feature,
 as it would mean that it could be unfrozen if they find it and then they would not have to re-register themselves.
 
 An auto top up system would be another useful feature to ensure that customers always have money in their account.
