@@ -21,7 +21,8 @@ public class TopUpController {
   @PatchMapping(path = "{employeeId}")
   @RequiresPermission
   public @ResponseBody
-  ResponseEntity<HttpStatus> topUpUser(@RequestBody TopUpAmount topUpAmount, @PathVariable String employeeId) {
+  ResponseEntity<HttpStatus> topUpUser(@RequestBody TopUpAmount topUpAmount,
+      @PathVariable String employeeId) {
     return topUpService.topUpUser(employeeId, topUpAmount)
         ? new ResponseEntity<>(HttpStatus.OK)
         : new ResponseEntity<>(HttpStatus.BAD_REQUEST);

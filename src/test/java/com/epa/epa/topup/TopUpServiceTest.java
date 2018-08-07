@@ -51,7 +51,7 @@ public class TopUpServiceTest {
 
 
   @Test
-  public void shouldThrowErrorIfBalanceIsNegative() {
+  public void shouldThrowErrorIfBalanceIsNegativeOr0() {
     TopUpAmount topUpAmount = TopUpAmount.builder()
         .topUpAmount(0)
         .build();
