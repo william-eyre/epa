@@ -28,6 +28,10 @@ public class AuthenticationController {
         ResponseEntity.ok(new Token(authenticationService.constructJWT(now, userCredentials))) :
         ResponseEntity.badRequest().build();
 
+
+
+
+
   }
 }
 
